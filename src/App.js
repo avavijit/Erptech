@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { saveState } from "../src/utility/browser-storage";
 import { debounce } from "debounce";
 
-//css
+// All CSS
 import "./assets/css/font-awesome/all.min.css"
 import "./assets/css/flaticon/flaticon.css"
 import "./assets/css/bootstrap/bootstrap.min.css"
@@ -16,9 +16,6 @@ import "./assets/css/swiper/swiper.min.css"
 import "./assets/css/animate/animate.min.css"
 import "./assets/css/magnific-popup/magnific-popup.css"
 import "./assets/css/style.css"
-
-//js
-
 
 store.subscribe(
   debounce(() => {

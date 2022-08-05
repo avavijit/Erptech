@@ -3,8 +3,10 @@ import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, DatePicker, Switch, Layout } from 'antd';
 import { useTheme } from "../../theme/use-theme";
+import Header from './Header'
+import Footer from './Footer'
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Content } = Layout;
 
 function Layouts() {
     const { t, i18n } = useTranslation();
@@ -16,18 +18,11 @@ function Layouts() {
     }
     return (
         <Layout>
-            <Header>
-                <Button type="primary" onClick={() => langChange()}>LANG {i18n.language}</Button>
-                <Switch checked={darkMode} onChange={setDarkMode} />
-                <Button onClick={() => { navigate(`'/'`) }}>Login Page</Button>
-            </Header>
+            <Header />
             <Content>
                 <Outlet />
             </Content>
-            {/* <Footer>
-                <NavLink to={'/'}>Home</NavLink>
-                <NavLink to={'/login'}>Login</NavLink>
-            </Footer> */}
+            <Footer />
         </Layout>
     );
 }

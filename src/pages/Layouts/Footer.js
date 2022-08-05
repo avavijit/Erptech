@@ -3,8 +3,7 @@ import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, DatePicker, Switch, Layout } from 'antd';
 import { useTheme } from "../../theme/use-theme";
-
-const { Header, Footer, Sider, Content } = Layout;
+import logo from '../../assets/images/logo.png'
 
 function Footer() {
     const { t, i18n } = useTranslation();
@@ -20,7 +19,7 @@ function Footer() {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-sm-3">
-                            <a href="index.html"><img className="img-fluid" src="images/logo.svg" alt="logo" /></a>
+                            <NavLink to="/"><img className="img-fluid" src={logo} alt="logo" /></NavLink>
                         </div>
                         <div className="col-sm-9 text-sm-end mt-4 mt-sm-0">
                             <ul className="list-unstyled mb-0 social-icon">
@@ -84,7 +83,7 @@ function Footer() {
                     </div>
                     <div className="col-sm-6 col-lg-4">
                         <div className="footer-contact-info">
-                            <h5 className="text-primary mb-3">Contact hi-Soft</h5>
+                            <h5 className="text-primary mb-3">Contact ERP TECH</h5>
                             <div className="contact-address">
                                 <div className="contact-item">
                                     <label>Address:</label>
@@ -107,7 +106,7 @@ function Footer() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">
-                            <p className="mb-0">©Copyright 2020 <a href="index.html">hi-soft</a> All Rights Reserved</p>
+                            <p className="mb-0">©Copyright 2022 <NavLink to="/">ERP TECH</NavLink> All Rights Reserved</p>
                         </div>
                     </div>
                 </div>
