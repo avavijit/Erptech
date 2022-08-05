@@ -25,15 +25,10 @@ function Routers() {
   return (
     <HashRouter>
       <Routes>
-
-        {/* Without token and Without Layout */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Splash />} />
-
         <Route element={<Layouts />}>
 
           {/* Without token */}
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
           <Route element={<RequireAuth />}>
             {/* With token */}

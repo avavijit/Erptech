@@ -12,8 +12,6 @@ function Home() {
     const { t } = useTranslation();
     return (
         <>
-
-
             <header className="header default">
                 <div className="topbar">
                     <div className="container-fluid">
@@ -180,7 +178,7 @@ function Home() {
             <section className="banner">
                 <div className="swiper-container">
                     <div className="swiper-wrapper h-700 h-sm-500">
-                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{backgroundImage:`url(images/slider/01.jpg)`, backgroundSize: "cover",backgroundPosition: "center"}}>
+                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(images/slider/01.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
                             <div className="swipeinner container">
                                 <div className="row justify-content-center">
                                     <div className="col-lg-9 col-md-10 text-center position-relative">
@@ -191,7 +189,7 @@ function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{backgroundImage:`url(images/slider/02.jpg)`, backgroundSize: "cover",backgroundPosition: "center"}}>
+                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(images/slider/02.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
                             <div className="swipeinner container">
                                 <div className="row justify-content-center">
                                     <div className="col-lg-9 col-md-11 text-center position-relative">
@@ -341,7 +339,7 @@ function Home() {
                     <div className="row">
                         <div className="col-md-6 col-lg-4 order-lg-1 order-1">
                             <div className="case-study">
-                                <div className="case-study-img case-study-lg" style={{backgroundImage: `url('images/project/02.jpg')`}}>
+                                <div className="case-study-img case-study-lg" style={{ backgroundImage: `url('images/project/02.jpg')` }}>
                                 </div>
                                 <div className="case-study-info">
                                     <a className="case-study-title fw-bold" href="index.html#">LEAD PLUS</a>
@@ -355,7 +353,7 @@ function Home() {
                             <div className="row">
                                 <div className="col-sm-6 col-lg-12">
                                     <div className="case-study">
-                                        <div className="case-study-img" style={{backgroundImage: `url('images/project/04.jpg')`}}>
+                                        <div className="case-study-img" style={{ backgroundImage: `url('images/project/04.jpg')` }}>
                                         </div>
                                         <div className="case-study-info">
                                             <a className="case-study-title fw-bold" href="index.html#">TAXI APP</a>
@@ -367,7 +365,7 @@ function Home() {
                                 </div>
                                 <div className="col-sm-6 col-lg-12">
                                     <div className="case-study">
-                                        <div className="case-study-img" style={{backgroundImage: `url('images/project/06.jpg')`}}>
+                                        <div className="case-study-img" style={{ backgroundImage: `url('images/project/06.jpg')` }}>
                                         </div>
                                         <div className="case-study-info">
                                             <a className="case-study-title" href="index.html#">DOCTORS APPOINTMENT APP</a>
@@ -381,7 +379,7 @@ function Home() {
                         </div>
                         <div className="col-md-6 col-lg-4 order-lg-3 order-2">
                             <div className="case-study">
-                                <div className="case-study-img case-study-lg" style={{backgroundImage: `url('images/project/05.jpg')`}}>
+                                <div className="case-study-img case-study-lg" style={{ backgroundImage: `url('images/project/05.jpg')` }}>
                                 </div>
                                 <div className="case-study-info">
                                     <a className="case-study-title fw-bold" href="index.html#">Financeoont</a>
@@ -994,104 +992,7 @@ function Home() {
                 </div>
             </section>
 
-            <footer className="footer">
-                <div className="footer-top">
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <div className="col-sm-3">
-                                <a href="index.html"><img className="img-fluid" src="images/logo.svg" alt="logo" /></a>
-                            </div>
-                            <div className="col-sm-9 text-sm-end mt-4 mt-sm-0">
-                                <ul className="list-unstyled mb-0 social-icon">
-                                    <li><a href="index.html#"><i className="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="index.html#"><i className="fab fa-twitter"></i></a></li>
-                                    <li><a href="index.html#"><i className="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="index.html#"><i className="fab fa-github"></i></a></li>
-                                    <li><a href="index.html#"><i className="fab fa-dribbble"></i></a></li>
-                                    <li><a href="index.html#"><i className="fab fa-behance"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr className="my-4 my-sm-5 pb-0" />
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-                            <h5 className="text-primary mb-2 mb-sm-4">IT Services</h5>
-                            <div className="footer-link">
-                                <ul className="list-unstyled mb-0">
-                                    <li><a href="index.html#">Data Synchronization</a></li>
-                                    <li><a href="index.html#">Content Management</a></li>
-                                    <li><a href="index.html#">Content Delivery</a></li>
-                                    <li><a href="index.html#">Transaction Processing</a></li>
-                                    <li><a href="index.html#">Process Automation</a></li>
-                                </ul>
-                                <ul className="list-unstyled mb-0">
-                                    <li><a href="index.html#">Event Processing</a></li>
-                                    <li><a href="index.html#">Information Security</a></li>
-                                    <li><a href="index.html#">Mobile Platforms</a></li>
-                                    <li><a href="index.html#">Communications</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-2 mb-4 mb-lg-0">
-                            <h5 className="text-primary mb-2 mb-sm-4">Company</h5>
-                            <div className="footer-link">
-                                <ul className="list-unstyled mb-0">
-                                    <li><a href="index.html#">About</a></li>
-                                    <li><a href="index.html#">Leadership Team</a></li>
-                                    <li><a href="index.html#">IT Blog</a></li>
-                                    <li><a href="index.html#">Case Studies</a></li>
-                                    <li><a href="index.html#">Locations</a></li>
-                                    <li><a href="index.html#">Careers <span className="badge bg-success ms-2">We're hiring</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-2 mb-4 mb-sm-0">
-                            <h5 className="text-primary mb-2 mb-sm-4">Support</h5>
-                            <div className="footer-link">
-                                <ul className="list-unstyled mb-0">
-                                    <li><a href="index.html#">Forum Support</a></li>
-                                    <li><a href="index.html#">Help & FAQs</a></li>
-                                    <li><a href="index.html#">Contact Us</a></li>
-                                    <li><a href="index.html#">Pricing And Plans</a></li>
-                                    <li><a href="index.html#">Cookies Policy</a></li>
-                                    <li><a href="index.html#">Privacy Policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="footer-contact-info">
-                                <h5 className="text-primary mb-3">Contact hi-Soft</h5>
-                                <div className="contact-address">
-                                    <div className="contact-item">
-                                        <label>Address:</label>
-                                        <p>Plot No. 1808, 1st floor, Mancheswar Hitech Square, Behind Koel Care Bhubaneswar, Odisha-751017, India</p>
-                                    </div>
-                                    <div className="contact-item">
-                                        <label>Phone:</label>
-                                        <h4 className="mb-0 fw-bold"><a href="index.html#">+91 8637272263</a></h4>
-                                    </div>
-                                    <div className="contact-item">
-                                        <label>Email:</label>
-                                        <a className="text-dark" href="index.html#">erptechin@gmail.com</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="footer-bottom py-sm-5 py-4">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12 text-center">
-                                <p className="mb-0">©Copyright 2020 <a href="index.html">hi-soft</a> All Rights Reserved</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            
         </>
     );
 };
