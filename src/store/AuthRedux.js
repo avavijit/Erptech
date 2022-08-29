@@ -1,116 +1,92 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { apiGetCall, apiPostCall } from '../utility/site-apis'
+import { loginApi, apiGetCall, postCmdApi } from '../utility/site-apis'
+import { toast } from 'react-toastify';
+import Config from "../common/Config";
 
 const initialState = {
-  isFetching: false,
-  error: null,
-  isOptSend: false,
-  phone: 123,
-  user: null,
-  token: null,
-  loginRedirectUrl: null,
+    isFetching: false,
+    error: null,
+    user: null,
+    token: null,
 }
 
-export const otpSend = createAsyncThunk(
-  'auth/otpSend',
-  async (params, { rejectWithValue }) => {
-    const response = await apiPostCall(`/auth/otp/send`, params)
-    if (response.data.status === 'error') {
-      return rejectWithValue(response.data)
+export const siteLogin = createAsyncThunk(
+    'auth/siteLogin',
+    async (params, { rejectWithValue }) => {
+        const response = await loginApi(`/api/method/${Config.frappe_custom_app}.authentication.login`, params)
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        if (response) {
+            const user = await apiGetCall(`/api/resource/User/${response.user}`, { token: `token ${response.token}` })
+            if (user.status === 'error') {
+                return rejectWithValue(response.data)
+            }
+            let roles = []
+            for (let item of user.roles) {
+                roles.push(item.role)
+            }
+            response.roles = roles
+            return { ...user, ...response }
+        }
     }
-    response.data.phone = params.phone
-    return response.data
-  }
 )
-export const otpReSend = createAsyncThunk(
-  'auth/otpReSend',
-  async (params, { rejectWithValue }) => {
-    const response = await apiPostCall(`/auth/otp/resend`, params)
-    if (response.data.status === 'error') {
-      return rejectWithValue(response.data)
+
+
+export const signUpUser = createAsyncThunk(
+    'auth/signUpUser',
+    async (params, { rejectWithValue }) => {
+        const response = await postCmdApi({ cmd: 'frappe.core.doctype.user.user.sign_up', redirect_to: ' ', ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response.data.message
     }
-    return response.data
-  }
-)
-export const otpValidate = createAsyncThunk(
-  'auth/otpValidate',
-  async (params, { rejectWithValue }) => {
-    const response = await apiPostCall(`/auth/otp/validate`, params)
-    if (response.data.status === 'error') {
-      return rejectWithValue(response.data)
-    }
-    return response.data
-  }
 )
 
 export const counterSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    setLoginRedirectUrl: (state, action) => {
-      state.loginRedirectUrl = action.payload
+    name: 'user',
+    initialState,
+    reducers: {
+        logout: (state) => {
+            state.user = null
+            state.token = null
+        },
     },
-    logout: (state, action) => {
-      state.user = null
-      state.token = null
-    },
-  },
-  extraReducers: {
-    // otpSend
-    [otpSend.pending]: (state, action) => {
-      state.isFetching = true
-      state.error = null
-      state.isOptSend = false
-    },
-    [otpSend.rejected]: (state, action) => {
-      alert(action.payload.message);
-      state.isFetching = false
-      state.error = action.payload.message
-    },
-    [otpSend.fulfilled]: (state, action) => {
-      state.isFetching = false
-      state.error = null
-      alert(action.payload.data);
-      state.isOptSend = true
-      state.phone = action.payload.phone
-    },
-    // otpReSend
-    [otpReSend.pending]: (state, action) => {
-      state.isFetching = true
-      state.error = null
-      state.isOptSend = false
-    },
-    [otpReSend.rejected]: (state, action) => {
-      alert(action.payload.message);
-      state.isFetching = false
-      state.error = action.payload.message
-    },
-    [otpReSend.fulfilled]: (state, action) => {
-      state.isFetching = false
-      state.error = null
-      alert(action.payload.data);
-      state.isOptSend = true
-    },
-    // otpValidate
-    [otpValidate.pending]: (state, action) => {
-      state.isFetching = true
-      state.error = null
-      state.isOptSend = false
-    },
-    [otpValidate.rejected]: (state, action) => {
-      alert(action.payload.message);
-      state.isFetching = false
-      state.error = action.payload.message
-    },
-    [otpValidate.fulfilled]: (state, action) => {
-      state.isFetching = false
-      state.error = null
-      state.user = action.payload.data
-      state.token = `Bearer ${action.payload.data.Authorization}`
-    },
-  }
+    extraReducers: {
+        // siteLogin
+        [siteLogin.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+            state.token = null
+            state.user = null
+        },
+        [siteLogin.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload?.message
+        },
+        [siteLogin.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.token = `token ${action?.payload?.token}`
+            state.user = action?.payload
+        },
+        // Sign Up
+        [signUpUser.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [signUpUser.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload?.message
+        },
+        [signUpUser.fulfilled]: (state, action) => {
+            toast.success(action?.payload[1] ? action?.payload[1] : `SignUp successfully`);
+            state.isFetching = false
+        },
+    }
 
 })
 
-export const { logout, setLoginRedirectUrl } = counterSlice.actions
+export const { logout } = counterSlice.actions
 export default counterSlice.reducer
