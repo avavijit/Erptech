@@ -1,105 +1,301 @@
+// https://github.com/frappe/frappe-client/blob/master/frappeclient/frappeclient.py
+
 import Config from "../common/Config";
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const axiosAPI = axios.create({
-  baseURL: Config.apiBaseUrl,
+  baseURL: Config.frappe_url,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Authorization': Config.token
   }
 });
 
-export function apiPostCall(path, params) {
-  let headers = {}
-  if (params.token) {
-    headers.Authorization = params.token
-  }
-  if (params.razorPaySignature) {
-    headers["x-razorpay-signature"] = params.razorPaySignature
-  }
-  return axiosAPI.post(path, params, { headers: headers })
-    .then((response) => {
-      return response
-    })
-    .catch((error) => {
-      if (error.response) {
-        return error.response
-      } else if (error.request) {
-        return error.request
-      } else {
-        return error.message
-      }
-    });
+function handleResponse(error) {
+  toast.error(error?.response?.statusText);
+  return { 'status': "error", 'data': error?.response?.statusText }
 }
 
-export function apiPutCall(path, params) {
-  return axiosAPI.put(path, params, { headers: { 'Authorization': params.token } })
+export function loginApi(path, params) {
+  let headers = { 'Content-Type': 'application/json' }
+  return axiosAPI.post(path, params, { headers: headers })
     .then((response) => {
-      return response
+      return response.data.message
     })
     .catch((error) => {
-      if (error.response) {
-        return error.response
-      } else if (error.request) {
-        return error.request
-      } else {
-        return error.message
-      }
+      return handleResponse(error);
     });
 }
 
 export function apiGetCall(path, params) {
-  // console.log(path, params)
-  return axiosAPI.get(path, { headers: { 'Authorization': params.token } })
+  let token = params.token
+  delete params.token
+  let newUrl = `${path}`
+  return axiosAPI.get(newUrl, { headers: { 'Authorization': token } })
     .then((response) => {
-      return response
+      return response.data.data
     })
     .catch((error) => {
-      if (error.response) {
-        return error.response
-      } else if (error.request) {
-        return error.request
-      } else {
-        return error.message
-      }
+      return handleResponse(error);
     });
 }
 
-export function apiGetSingleCall(path, params) {
-  return axiosAPI.get(path, { headers: { 'Authorization': params.token } })
+export function postCmdApi(params) {
+  let headers = {}
+  if (params.token) {
+    headers.Authorization = params.token
+  }
+  delete params.token
+  let body = ``;
+  for (let key in params) {
+    if (params[key]) {
+      body = body + `${key}=${params[key]}&`
+    }
+  }
+  return axiosAPI.post('', body, { headers: headers })
     .then((response) => {
       return response
     })
     .catch((error) => {
-      if (error.response) {
-        return error.response
-      } else if (error.request) {
-        return error.request
-      } else {
-        return error.message
-      }
+      return handleResponse(error);
     });
 }
 
-export function apiDeleteCall(path, params) {
-  return axiosAPI.delete(path, { headers: { 'Authorization': params.token } })
+export function postMethodApi(params) {
+  let token = params.token
+  let method = params.method
+  delete params.token
+  delete params.method
+
+  let headers = {}
+  if (token) {
+    headers.Authorization = token
+  }
+
+  let body = ``;
+  for (let key in params) {
+    if (params[key]) {
+      body = body + `${key}=${params[key]}&`
+    }
+  }
+  return axiosAPI.post(`api/method/${method}`, body, { headers: headers })
     .then((response) => {
       return response
     })
     .catch((error) => {
-      if (error.response) {
-        return error.response
-      } else if (error.request) {
-        return error.request
-      } else {
-        return error.message
+      return handleResponse(error);
+    });
+}
+
+export function getAllSingleDataApi(params) {
+  let headers = {}
+  if (params.token) {
+    headers.Authorization = params.token
+  }
+  let body = `doctype=${params.doctype}&cmd=frappe.client.get_value`;
+  if (params.fields) {
+    body = body + `&fieldname=${JSON.stringify(params.fields)}`
+  }
+  if (params.orderBy) {
+    body = body + `&order_by=${params.orderBy}`
+  }
+  if (params.search) {
+    let filters = []
+    for (let key in params.search) {
+      if (params.search[key]) {
+        filters.push([params.doctype, key, "like", params.search[key]])
       }
+    }
+    body = body + `&filters=${JSON.stringify(filters)}`
+  }
+  if (params.limit_start) {
+    body = body + `&limit_start=${params.limit_start}`
+  }
+  if (params.limit_page_length) {
+    body = body + `&limit_page_length=${params.limit_page_length}`
+  }
+  delete params.token
+  delete params.doctype
+  delete params.search
+  return axiosAPI.post('', body, { headers: headers })
+    .then((response) => {
+      return response.data.message
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export async function getAllDataApi(params) {
+  let doctype = params.doctype
+  let token = params.token
+  let search = params.search
+  let searchEqual = params.searchEqual
+  delete params.token
+  delete params.doctype
+  delete params.search
+  delete params.searchEqual
+
+  let headers = {}
+  if (token) {
+    headers.Authorization = token
+  }
+  let body = `doctype=${doctype}&cmd=frappe.client.get_list`;
+  if (params.fields) {
+    body = body + `&fields=${JSON.stringify(params.fields)}`
+  }
+  if (params.orderBy) {
+    body = body + `&order_by=${params.orderBy}`
+  }
+  if (search) {
+    let filters = []
+    for (let key in search) {
+      if (search[key]) {
+        filters.push([doctype, key, "like", search[key]])
+      }
+    }
+    body = body + `&filters=${JSON.stringify(filters)}`
+  }
+  if (searchEqual) {
+    let filters = []
+    for (let key in searchEqual) {
+      if (searchEqual[key]) {
+        filters.push([doctype, key, "=", searchEqual[key]])
+      }
+    }
+    body = body + `&filters=${JSON.stringify(filters)}`
+  }
+  if (params.page) {
+    let limitStart = (params.page == 1) ? 0 : String(Number(params.page) - 1) + "0"
+    body = body + `&limit_start=${limitStart}`
+  }
+  if (params.size) {
+    body = body + `&limit_page_length=${params.size}`
+  } else {
+    body = body + `&limit_page_length=None`
+  }
+
+
+  // Get Counts
+  let count = 0
+  let countHeaders = { 'Content-Type': 'application/json' }
+  let searchBy = {}
+  if (search) {
+    for (let key in search) {
+      if (search[key]) {
+        searchBy[key] = search[key]
+      }
+    }
+  }
+  let counts = await axiosAPI.post('api/method/erp_custom_auth.authentication.getDataDB', { doctype: doctype, search: searchBy }, { headers: countHeaders })
+  if (counts) {
+    count = counts?.data?.message ? counts.data.message : 0
+  }
+  return axiosAPI.post('', body, { headers: headers })
+    .then((response) => {
+      return { data: response.data.message, count }
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export function getSingleDataApi(params) {
+  let headers = {}
+  if (params.token) {
+    headers.Authorization = params.token
+  }
+  let body = `doctype=${params.doctype}&cmd=frappe.client.get_list&fields=${JSON.stringify(['*'])}&filters=${JSON.stringify([[params.doctype, "name", "like", params.id]])}`;
+  return axiosAPI.post('', body, { headers: headers })
+    .then((response) => {
+      return response?.data?.message ? response.data.message[0] : {}
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export function addNewDataApi(params) {
+  let doctype = params.doctype
+  let headers = {}
+  if (params.token) {
+    headers.Authorization = params.token
+  }
+  delete params.token
+  delete params.doctype
+  return axiosAPI.post(`api/resource/${doctype}`, params, { headers: headers })
+    .then((response) => {
+      return response.data.data
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export function editDataApi(params) {
+  let token = params.token
+  let doctype = params.doctype
+  delete params.token
+  delete params.doctype
+  return axiosAPI.put(`api/resource/${doctype}/${params.name}`, params, { headers: { 'Authorization': token } })
+    .then((response) => {
+      return response.data.data
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export function deleteDataApi(params) {
+  let token = params.token
+  delete params.token
+  return axiosAPI.delete(`/api/resource/${params.doctype}/${params.name}`, { headers: { 'Authorization': token } })
+    .then((response) => {
+      return response
+    })
+    .catch((error) => {
+      return handleResponse(error);
     });
 }
 
 export function uploadImgApi(file, token) {
+  return axiosAPI.get(`${Config.frappe_url}/uploader?filename=${file.name}`, { headers: { 'Authorization': token } })
+    .then((response) => {
+      let fields = response.data.data.fields
+      let url = response.data.data.url
+      let myHeaders = new Headers();
+      myHeaders.append("key", fields.key);
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(fields)) {
+        formData.append(key, value);
+      }
+      formData.append('file', file);
+      return fetch(url, {
+        method: "POST",
+        headers: myHeaders,
+        body: formData,
+      })
+        .then(response => {
+          if (response.status == 204) {
+            return `${url}/${fields.key}`
+          } else {
+            return null
+          }
+        })
+        .catch(error => {
+          return handleResponse(error);
+        })
+    })
+    .catch((error) => {
+      return handleResponse(error);
+    });
+}
+
+export function uploadVideoApi(file, token) {
   const data = new FormData();
-  data.append('files', file);
-  return fetch(`${Config.apiBaseUrl}/file/upload`, {
+  data.append('file', file);
+  return fetch(`${Config.apiBaseUrl}/videos/upload`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -114,6 +310,6 @@ export function uploadImgApi(file, token) {
       }
       return null
     }).catch(error => {
-      return error;
+      return handleResponse(error);
     });
 }
