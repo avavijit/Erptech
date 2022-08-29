@@ -14,7 +14,7 @@ function Home() {
             <section className="banner">
                 <div className="swiper-container">
                     <div className="swiper-wrapper h-700 h-sm-500">
-                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(images/slider/01.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
+                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(../assets/images/slider/01.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
                             <div className="swipeinner container">
                                 <div className="row justify-content-center">
                                     <div className="col-lg-9 col-md-10 text-center position-relative">
