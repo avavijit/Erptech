@@ -7,12 +7,16 @@ const initialState = {
     isFetching: false,
     error: null,
     homeSetting: null,
+    homeSlider:[],
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
 const fieldsNewsHomePage = ["logo", "email", "phone", "address", "facebook", "twiter"]
 
 const doctypePages = 'Web Page'
+const doctypeHomeslider = 'Home slider'
+const doctypeOurclint = 'Our Clients'
+
 
 export const getHomeSettings = createAsyncThunk(
     'auth/getHomeSettings',
@@ -33,6 +37,28 @@ export const getPageDetails = createAsyncThunk(
             return rejectWithValue(response.data)
         }
         return response.data[0]
+    }
+)
+
+export const getSlider = createAsyncThunk(
+    'main/getSlider',
+    async (params, { rejectWithValue }) => {
+        const response = await getAllDataApi({ doctype: doctypeHomeslider, fields: ["*"], ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response.data
+    }
+)
+
+export const getOurclint = createAsyncThunk(
+    'main/getOurclint',
+    async (params, { rejectWithValue }) => {
+        const response = await getAllDataApi({ doctype: doctypeOurclint, fields: ["*"], ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response.data
     }
 )
 
@@ -59,6 +85,34 @@ export const counterSlice = createSlice({
             state.isFetching = false
             state.error = null
             state.homeSetting = action?.payload
+        },
+        // getSlider
+        [getSlider.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getSlider.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getSlider.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.homeSlider = action?.payload
+        },
+        // getOurclint
+        [getOurclint.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getOurclint.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getOurclint.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.ourclint = action?.payload
         },
 
     }

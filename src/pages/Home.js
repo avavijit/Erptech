@@ -1,41 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, DatePicker, Switch } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import Icon from 'react-web-vector-icons';
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
+import { getSlider, getOurclint } from '../store/MainRedux'
+import Config from "../common/Config";
+import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 
 function Home() {
+    const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
+    const dispatch = useDispatch()
+    const homeSlider = useSelector((state) => state.main.homeSlider)
+    const ourclint = useSelector((state) => state.main.ourclint)
+
+    useEffect(() => {
+        dispatch(getSlider({ token }))
+        dispatch(getOurclint({ token }))
+    }, []);
+    // console.log(ourclint)
     return (
         <>
             <section className="banner">
                 <div className="swiper-container">
                     <div className="swiper-wrapper h-700 h-sm-500">
-                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(../assets/images/slider/01.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
+                        {homeSlider.map((item, key) => <div key={key} className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(../assets/images/slider/01.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
                             <div className="swipeinner container">
                                 <div className="row justify-content-center">
                                     <div className="col-lg-9 col-md-10 text-center position-relative">
-                                        <h1 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.25s">A digital marketing company you can trust</h1>
-                                        <h6 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.5s">Award-Winning website design & creative digital agency.</h6>
+                                        <h1 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.25s">{item.heading}</h1>
+                                        <h6 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.5s">{item.sub_heading}</h6>
                                         <a className="btn btn-dark btn-round text-white" data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.75s" href="index.html#">Get Started Now<i className="fas fa-arrow-right ps-3"></i></a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="swiper-slide align-items-center d-flex responsive-overlap-md bg-overlay-black-30" style={{ backgroundImage: `url(images/slider/02.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}>
-                            <div className="swipeinner container">
-                                <div className="row justify-content-center">
-                                    <div className="col-lg-9 col-md-11 text-center position-relative">
-                                        <h1 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.25s">Award winning digital agency</h1>
-                                        <h6 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.5s">We're ERP TECH. We help drive change with technology.</h6>
-                                        <a className="btn btn-dark btn-round text-white" data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.75s" href="index.html#">View Our Solution<i className="fas fa-arrow-right ps-3"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div>)}
                     </div>
                     <div className="swiper-button-prev"><i className="fas fa-arrow-left icon-btn"></i></div>
                     <div className="swiper-button-next"><i className="fas fa-arrow-right icon-btn"></i></div>
@@ -53,11 +55,11 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="brand-logo ps-4">
-                                    <div className="owl-carousel testimonial-center owl-nav-bottom-center" data-nav-arrow="false" data-items="5" data-md-items="4" data-sm-items="4" data-xs-items="3" data-xx-items="2" data-space="40" data-autoheight="true">
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/01.svg" alt="" />
+                                {ourclint.map((item, key) => <div key={key} className="owl-carousel testimonial-center owl-nav-bottom-center" data-nav-arrow="false" data-items="5" data-md-items="4" data-sm-items="4" data-xs-items="3" data-xx-items="2" data-space="40" data-autoheight="true">
+                                        <div className="item">{item.image}
+                                            {/* <img className="img-fluid center-block mx-auto" src="images/client-logo/light/01.svg" alt="" /> */}
                                         </div>
-                                        <div className="item">
+                                        {/* <div className="item">
                                             <img className="img-fluid center-block mx-auto" src="images/client-logo/light/02.svg" alt="" />
                                         </div>
                                         <div className="item">
@@ -74,8 +76,8 @@ function Home() {
                                         </div>
                                         <div className="item">
                                             <img className="img-fluid center-block mx-auto" src="images/client-logo/light/07.svg" alt="" />
-                                        </div>
-                                    </div>
+                                        </div> */}
+                                    </div>)}
                                 </div>
                                 <div className="client-btn">
                                     <a href="index.html#" className="btn btn-primary-round btn-round text-white">Case Studies<i className="fas fa-arrow-right ps-3"></i></a>
