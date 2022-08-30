@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, DatePicker, Switch } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import Icon from 'react-web-vector-icons';
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
+import { getHomeSettings, getPageDetails } from '../store/MainRedux'
+import Config from "../common/Config";
+
 
 function AboutUs() {
+    const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
+    const dispatch = useDispatch()
+    let { name } = useParams();
+
+
+
+    useEffect(() => {
+        dispatch(getPageDetails({ token, name }))
+    }, [name]);
+
     return (
         <>
             <section class="header-inner header-inner-menu bg-overlay-black-50">

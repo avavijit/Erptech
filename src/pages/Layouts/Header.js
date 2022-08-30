@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button, DatePicker, Switch, Layout } from 'antd';
 import { useTheme } from "../../theme/use-theme";
 import logo from '../../assets/images/logo.png'
+import { getHomeSettings,getPageDetails } from '../../store/MainRedux'
+import Config from "../../common/Config";
+import { useSelector, useDispatch } from 'react-redux'
 
 function Header() {
+    const token = Config.token
+    const dispatch = useDispatch()
     const { t, i18n } = useTranslation();
     let navigate = useNavigate();
     const [darkMode, setDarkMode] = useTheme();
@@ -13,6 +18,13 @@ function Header() {
         let lang = (i18n.language === 'de') ? 'en' : 'de'
         i18n.changeLanguage(lang)
     }
+    const homeSettings = useSelector((state) => state.main.homeSetting)
+
+    useEffect(() => {
+        dispatch(getHomeSettings({ token }))
+    }, []);
+
+    // console.log(homeSettings)
     return (
         <header className="header default">
             <div className="topbar">
@@ -24,11 +36,12 @@ function Header() {
                                     <a href="mailto:erptechin@gmail.com"><i className="far fa-envelope me-2 fa-flip-horizontal text-primary"></i>erptechin@gmail.com</a>
                                 </div>
                                 <div className="me-auto d-inline-block py-1">
-                                    <a href="tel:+91 8637272263"><i className="fas fa-map-marker-alt text-primary me-2"></i>Mancheswar Hitech Square, Behind Koel Care Bhubaneswar</a>
+                                    <a href="tel:+91 8637272263"><i className="fas fa-map-marker-alt text-primary me-2"></i>{homeSettings?.address}</a>
                                 </div>
                                 <div className="d-inline-block py-1">
                                     <ul className="list-unstyled">
-                                        <li><NavLink to="/about-us">Careers</NavLink></li>
+                                        <li><NavLink to="/page/about-us">Careers</NavLink></li>
+                                        <li><NavLink to="/page/contact-us">Careers</NavLink></li>
                                         <li><a href="blog.html">News & Media</a></li>
                                         <li><a href="faq.html">FAQ</a></li>
                                     </ul>

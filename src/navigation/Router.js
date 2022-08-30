@@ -29,7 +29,7 @@ function Routers() {
 
           {/* Without token */}
           <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/page/:name" element={<AboutUs />} />
 
           <Route element={<RequireAuth />}>
             {/* With token */}

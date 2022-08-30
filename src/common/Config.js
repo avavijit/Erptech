@@ -1,4 +1,6 @@
 export default {
-      // apiBaseUrl: 'http://localhost:3000/api/v1',
-      apiBaseUrl: 'https://insta-starzz-staging.herokuapp.com/api/v1',
+      frappe_url: 'https://erptech.in',
+      frappe_custom_app: 'erp_custom_auth',
+      token: 'token 5425b560822e88d:70f72c01686f30d',
+
 }
