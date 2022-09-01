@@ -5,7 +5,7 @@ import Icon from 'react-web-vector-icons';
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
-import { getSlider, getOurclint } from '../store/MainRedux'
+import { getSlider, getOurclint, getDegitallife } from '../store/MainRedux'
 import Config from "../common/Config";
 import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 
@@ -16,12 +16,14 @@ function Home() {
     const dispatch = useDispatch()
     const homeSlider = useSelector((state) => state.main.homeSlider)
     const ourclint = useSelector((state) => state.main.ourclint)
+    const degitallife = useSelector((state) => state.main.degitallife)
 
     useEffect(() => {
         dispatch(getSlider({ token }))
         dispatch(getOurclint({ token }))
+        dispatch(getDegitallife({ token }))
     }, []);
-    // console.log(ourclint)
+    console.log(degitallife)
     return (
         <>
             <section className="banner">
@@ -55,29 +57,12 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="brand-logo ps-4">
-                                {ourclint.map((item, key) => <div key={key} className="owl-carousel testimonial-center owl-nav-bottom-center" data-nav-arrow="false" data-items="5" data-md-items="4" data-sm-items="4" data-xs-items="3" data-xx-items="2" data-space="40" data-autoheight="true">
-                                        <div className="item">{item.image}
-                                            {/* <img className="img-fluid center-block mx-auto" src="images/client-logo/light/01.svg" alt="" /> */}
-                                        </div>
-                                        {/* <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/02.svg" alt="" />
-                                        </div>
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/03.svg" alt="" />
-                                        </div>
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/04.svg" alt="" />
-                                        </div>
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/05.svg" alt="" />
-                                        </div>
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/06.svg" alt="" />
-                                        </div>
-                                        <div className="item">
-                                            <img className="img-fluid center-block mx-auto" src="images/client-logo/light/07.svg" alt="" />
-                                        </div> */}
-                                    </div>)}
+                                    <div className="owl-carousel testimonial-center owl-nav-bottom-center" data-nav-arrow="false" data-items="5" data-md-items="4" data-sm-items="4" data-xs-items="3" data-xx-items="2" data-space="40" data-autoheight="true">
+
+                                        {ourclint.map((item) => <div className="item">
+                                            <img className="img-fluid center-block mx-auto" width={20} src={`https://erptech.in/${item.image}`} alt="" />
+                                        </div>)}
+                                    </div>
                                 </div>
                                 <div className="client-btn">
                                     <a href="index.html#" className="btn btn-primary-round btn-round text-white">Case Studies<i className="fas fa-arrow-right ps-3"></i></a>
@@ -99,61 +84,20 @@ function Home() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-lg-3 mb-sm-5 mb-4">
+                        {degitallife.map((item, key) => <div kay={key} className="col-md-6 col-lg-3 mb-sm-5 mb-4">
                             <div className="category-box category-box-style-02 text-center">
                                 <div className="category-icon">
-                                    <i className="flaticon-monitor"></i>
-                                    <h5 className="category-title mb-0">Web Development</h5>
+                                    <i className={item.icon}></i>
+                                    <h5 className="category-title mb-0">{item.title}</h5>
                                 </div>
                                 <ul className="category-list">
-                                    <li><a href="index.html#">E-commerce strategy</a></li>
-                                    <li><a href="index.html#">Custom design</a></li>
-                                    <li><a href="index.html#">Front-End development</a></li>
-                                    <li><a href="index.html#">Business intelligence</a></li>
+                                    <li><a href="index.html#">{item.link_1}</a></li>
+                                    <li><a href="index.html#">{item.link_2}</a></li>
+                                    <li><a href="index.html#">{item.link_3}</a></li>
+                                    <li><a href="index.html#">{item.link_4}</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 mb-sm-5 mb-4">
-                            <div className="category-box category-box-style-02 text-center active">
-                                <div className="category-icon">
-                                    <i className="flaticon-mobile-phone"></i>
-                                    <h5 className="category-title mb-0">Mobile Development</h5>
-                                </div>
-                                <ul className="category-list">
-                                    <li><a href="index.html#">iOS</a></li>
-                                    <li><a href="index.html#">Android</a></li>
-                                    <li><a href="index.html#">Hybrid platform</a></li>
-                                    <li><a href="index.html#">User testing</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 mb-sm-5 mb-4">
-                            <div className="category-box category-box-style-02 text-center">
-                                <div className="category-icon">
-                                    <i className="flaticon-icon-253674"></i>
-                                    <h5 className="category-title mb-0">Branding Services</h5>
-                                </div>
-                                <ul className="category-list">
-                                    <li><a href="index.html#">Logo design</a></li>
-                                    <li><a href="index.html#">UI/UX design</a></li>
-                                    <li><a href="index.html#">Visual design</a></li>
-                                    <li><a href="index.html#">Brand collateral</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 mb-sm-5 mb-4">
-                            <div className="category-box category-box-style-02 text-center">
-                                <div className="category-icon">
-                                    <i className="flaticon-icon-149196"></i>
-                                    <h5 className="category-title mb-0">Digital Marketing</h5>
-                                </div>
-                                <ul className="category-list">
-                                    <li><a href="index.html#">Marketing strategy</a></li>
-                                    <li><a href="index.html#">Paid media</a></li>
-                                    <li><a href="index.html#">Influencer marketing</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        </div>)}
                     </div>
                     <div className="row">
                         <div className="col-12 d-md-flex justify-content-center align-items-center">

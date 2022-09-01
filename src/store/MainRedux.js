@@ -8,6 +8,8 @@ const initialState = {
     error: null,
     homeSetting: null,
     homeSlider:[],
+    ourclint:[],
+    degitallife:[],
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
@@ -16,6 +18,8 @@ const fieldsNewsHomePage = ["logo", "email", "phone", "address", "facebook", "tw
 const doctypePages = 'Web Page'
 const doctypeHomeslider = 'Home slider'
 const doctypeOurclint = 'Our Clients'
+const doctypeDegitallife = 'Digital Life'
+
 
 
 export const getHomeSettings = createAsyncThunk(
@@ -54,7 +58,20 @@ export const getSlider = createAsyncThunk(
 export const getOurclint = createAsyncThunk(
     'main/getOurclint',
     async (params, { rejectWithValue }) => {
+         console.log(params)
         const response = await getAllDataApi({ doctype: doctypeOurclint, fields: ["*"], ...params })
+        // console.log(response)
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response.data
+    }
+)
+export const getDegitallife = createAsyncThunk(
+    'main/getDegitallife',
+    async (params, { rejectWithValue }) => {
+        const response = await getAllDataApi({ doctype: doctypeDegitallife, fields: ["*"], ...params })
+        // console.log(response)
         if (response.status === 'error') {
             return rejectWithValue(response.data)
         }
@@ -113,6 +130,20 @@ export const counterSlice = createSlice({
             state.isFetching = false
             state.error = null
             state.ourclint = action?.payload
+        },
+        // getDegitallife
+        [getDegitallife.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getDegitallife.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getDegitallife.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.degitallife = action?.payload
         },
 
     }
