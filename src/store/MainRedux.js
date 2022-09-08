@@ -10,6 +10,7 @@ const initialState = {
     homeSlider:[],
     ourclint:[],
     degitallife:[],
+    service:[],
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
@@ -19,6 +20,7 @@ const doctypePages = 'Web Page'
 const doctypeHomeslider = 'Home slider'
 const doctypeOurclint = 'Our Clients'
 const doctypeDegitallife = 'Digital Life'
+const doctypeService = 'Service'
 
 
 
@@ -71,6 +73,17 @@ export const getDegitallife = createAsyncThunk(
     'main/getDegitallife',
     async (params, { rejectWithValue }) => {
         const response = await getAllDataApi({ doctype: doctypeDegitallife, fields: ["*"], ...params })
+        // console.log(response)
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response.data
+    }
+)
+export const getService= createAsyncThunk(
+    'main/getService',
+    async (params, { rejectWithValue }) => {
+        const response = await getAllDataApi({ doctype: doctypeService, fields: ["*"], ...params })
         // console.log(response)
         if (response.status === 'error') {
             return rejectWithValue(response.data)
@@ -144,6 +157,20 @@ export const counterSlice = createSlice({
             state.isFetching = false
             state.error = null
             state.degitallife = action?.payload
+        },
+        // getService
+        [getService.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getService.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getService.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.service = action?.payload
         },
 
     }

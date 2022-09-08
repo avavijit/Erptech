@@ -5,7 +5,7 @@ import Icon from 'react-web-vector-icons';
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
-import { getSlider, getOurclint, getDegitallife } from '../store/MainRedux'
+import { getSlider, getOurclint, getDegitallife, getService } from '../store/MainRedux'
 import Config from "../common/Config";
 import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 
@@ -17,13 +17,15 @@ function Home() {
     const homeSlider = useSelector((state) => state.main.homeSlider)
     const ourclint = useSelector((state) => state.main.ourclint)
     const degitallife = useSelector((state) => state.main.degitallife)
+    const service = useSelector((state) => state.main.service)
 
     useEffect(() => {
         dispatch(getSlider({ token }))
         dispatch(getOurclint({ token }))
         dispatch(getDegitallife({ token }))
+        dispatch(getService({ token }))
     }, []);
-    console.log(degitallife)
+    console.log(service)
     return (
         <>
             <section className="banner">
@@ -449,18 +451,18 @@ function Home() {
                         </div>
                         <div className="col-lg-8">
                             <div className="row">
-                                <div className="col-sm-6">
-                                    <div className="feature-info feature-info-style-01">
+                            {service.map((item, key) =><div key={key} className="col-sm-6 mt-4" >
+                                     <div  className="feature-info feature-info-style-01">
                                         <div className="feature-info-icon">
-                                            <i className="flaticon-data"></i>
+                                            <i className={item.icon}></i>
                                         </div>
                                         <div className="feature-info-content">
-                                            <h5 className="mb-3 feature-info-title">Information Security</h5>
-                                            <p className="mb-0">Do it today. Remind yourself of someone you know who died suddenly and the fact that there is no guarantee that tomorrow will come.</p>
+                                            <h5 className="mb-3 feature-info-title">{item.title}</h5>
+                                            <p className="mb-0">{item.description}</p>
                                             <a href="service-detail.html" className="icon-btn"><i className="fas fa-long-arrow-alt-right"></i></a>
                                         </div>
                                     </div>
-                                    <div className="feature-info feature-info-style-01 mt-4 mt-lg-5">
+                                    {/* <div className="feature-info feature-info-style-01 mt-4 mt-lg-5">
                                         <div className="feature-info-icon">
                                             <i className="flaticon-icon-149196"></i>
                                         </div>
@@ -479,9 +481,9 @@ function Home() {
                                             <p className="mb-0">There is really no magic to it and it’s not reserved only for a select few people. As such, success really has nothing to do with luck,</p>
                                             <a href="service-detail.html" className="icon-btn"><i className="fas fa-long-arrow-alt-right"></i></a>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
+                                    </div> */}
+                                </div>)}
+                                {/* <div className="col-sm-6">
                                     <div className="feature-info feature-info-style-01 mt-4 mt-lg-5">
                                         <div className="feature-info-icon">
                                             <i className="flaticon-author"></i>
@@ -512,7 +514,7 @@ function Home() {
                                             <a href="service-detail.html" className="icon-btn"><i className="fas fa-long-arrow-alt-right"></i></a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
