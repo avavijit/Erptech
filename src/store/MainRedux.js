@@ -58,9 +58,7 @@ export const getSlider = createAsyncThunk(
 export const getOurclint = createAsyncThunk(
     'main/getOurclint',
     async (params, { rejectWithValue }) => {
-        console.log(params)
         const response = await getAllDataApi({ doctype: doctypeOurclint, fields: ["*"], ...params })
-        // console.log(response)
         if (response.status === 'error') {
             return rejectWithValue(response.data)
         }
@@ -71,7 +69,6 @@ export const getDegitallife = createAsyncThunk(
     'main/getDegitallife',
     async (params, { rejectWithValue }) => {
         const response = await getAllDataApi({ doctype: doctypeDegitallife, fields: ["*"], ...params })
-        // console.log(response)
         if (response.status === 'error') {
             return rejectWithValue(response.data)
         }
@@ -82,7 +79,6 @@ export const getService = createAsyncThunk(
     'main/getService',
     async (params, { rejectWithValue }) => {
         const response = await getAllDataApi({ doctype: doctypeService, fields: ["*"], ...params })
-        // console.log(response)
         if (response.status === 'error') {
             return rejectWithValue(response.data)
         }
