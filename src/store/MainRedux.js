@@ -1,16 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getAllDataApi, getAllSingleDataApi, postCmdApi, postMethodApi } from '../utility/site-apis'
-import { toast } from 'react-toastify';
-import Config from "../common/Config";
+import { getAllDataApi, getAllSingleDataApi, postCmdApi, postMethodApi } from '../utility/frappe-apis'
 
 const initialState = {
     isFetching: false,
     error: null,
     homeSetting: null,
-    homeSlider:[],
-    ourclint:[],
-    degitallife:[],
-    service:[],
+    homeSlider: [],
+    ourclint: [],
+    degitallife: [],
+    service: [],
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
@@ -60,7 +58,7 @@ export const getSlider = createAsyncThunk(
 export const getOurclint = createAsyncThunk(
     'main/getOurclint',
     async (params, { rejectWithValue }) => {
-         console.log(params)
+        console.log(params)
         const response = await getAllDataApi({ doctype: doctypeOurclint, fields: ["*"], ...params })
         // console.log(response)
         if (response.status === 'error') {
@@ -80,7 +78,7 @@ export const getDegitallife = createAsyncThunk(
         return response.data
     }
 )
-export const getService= createAsyncThunk(
+export const getService = createAsyncThunk(
     'main/getService',
     async (params, { rejectWithValue }) => {
         const response = await getAllDataApi({ doctype: doctypeService, fields: ["*"], ...params })

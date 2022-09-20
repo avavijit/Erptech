@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { loginApi, apiGetCall, postCmdApi } from '../utility/site-apis'
-import { toast } from 'react-toastify';
+import { loginApi, apiGetCall, postCmdApi } from '../utility/frappe-apis'
+import { message } from 'antd';
 import Config from "../common/Config";
 
 const initialState = {
@@ -81,7 +81,7 @@ export const counterSlice = createSlice({
             state.error = action?.payload?.message
         },
         [signUpUser.fulfilled]: (state, action) => {
-            toast.success(action?.payload[1] ? action?.payload[1] : `SignUp successfully`);
+            message.success(action?.payload[1] ? action?.payload[1] : `SignUp successfully`);
             state.isFetching = false
         },
     }

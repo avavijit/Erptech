@@ -1,7 +1,7 @@
 // https://github.com/frappe/frappe-client/blob/master/frappeclient/frappeclient.py
 
 import Config from "../common/Config";
-import { toast } from 'react-toastify';
+import { message } from 'antd';
 import axios from 'axios';
 
 const axiosAPI = axios.create({
@@ -13,7 +13,7 @@ const axiosAPI = axios.create({
 });
 
 function handleResponse(error) {
-  toast.error(error?.response?.statusText);
+  message.error(error?.response?.statusText);
   return { 'status': "error", 'data': error?.response?.statusText }
 }
 
@@ -89,35 +89,27 @@ export function postMethodApi(params) {
 }
 
 export function getAllSingleDataApi(params) {
+  let doctype = params.doctype
+  let token = params.token
+  let filters = params.filters
+  delete params.token
+  delete params.doctype
+  delete params.filters
   let headers = {}
   if (params.token) {
-    headers.Authorization = params.token
+    headers.Authorization = token
   }
-  let body = `doctype=${params.doctype}&cmd=frappe.client.get_value`;
+  let body = `doctype=${doctype}&cmd=frappe.client.get_value`;
   if (params.fields) {
     body = body + `&fieldname=${JSON.stringify(params.fields)}`
   }
   if (params.orderBy) {
     body = body + `&order_by=${params.orderBy}`
   }
-  if (params.search) {
-    let filters = []
-    for (let key in params.search) {
-      if (params.search[key]) {
-        filters.push([params.doctype, key, "like", params.search[key]])
-      }
-    }
+  if (filters) {
     body = body + `&filters=${JSON.stringify(filters)}`
   }
-  if (params.limit_start) {
-    body = body + `&limit_start=${params.limit_start}`
-  }
-  if (params.limit_page_length) {
-    body = body + `&limit_page_length=${params.limit_page_length}`
-  }
-  delete params.token
-  delete params.doctype
-  delete params.search
+  body = body + `&limit_page_length=None`
   return axiosAPI.post('', body, { headers: headers })
     .then((response) => {
       return response.data.message
@@ -130,12 +122,10 @@ export function getAllSingleDataApi(params) {
 export async function getAllDataApi(params) {
   let doctype = params.doctype
   let token = params.token
-  let search = params.search
-  let searchEqual = params.searchEqual
+  let filters = params.filters
   delete params.token
   delete params.doctype
-  delete params.search
-  delete params.searchEqual
+  delete params.filters
 
   let headers = {}
   if (token) {
@@ -148,22 +138,7 @@ export async function getAllDataApi(params) {
   if (params.orderBy) {
     body = body + `&order_by=${params.orderBy}`
   }
-  if (search) {
-    let filters = []
-    for (let key in search) {
-      if (search[key]) {
-        filters.push([doctype, key, "like", search[key]])
-      }
-    }
-    body = body + `&filters=${JSON.stringify(filters)}`
-  }
-  if (searchEqual) {
-    let filters = []
-    for (let key in searchEqual) {
-      if (searchEqual[key]) {
-        filters.push([doctype, key, "=", searchEqual[key]])
-      }
-    }
+  if (filters) {
     body = body + `&filters=${JSON.stringify(filters)}`
   }
   if (params.page) {
@@ -176,21 +151,20 @@ export async function getAllDataApi(params) {
     body = body + `&limit_page_length=None`
   }
 
-
   // Get Counts
   let count = 0
   let countHeaders = { 'Content-Type': 'application/json' }
   let searchBy = {}
-  if (search) {
-    for (let key in search) {
-      if (search[key]) {
-        searchBy[key] = search[key]
+  if (filters) {
+    for (let key in filters) {
+      if (filters[key]) {
+        searchBy[filters[key][1]] = filters[key][3]
       }
     }
   }
   let counts = await axiosAPI.post('api/method/erp_custom_auth.authentication.getDataDB', { doctype: doctype, search: searchBy }, { headers: countHeaders })
   if (counts) {
-    count = counts?.data?.message ? counts.data.message : 0
+    count = counts?.data?.message ? counts?.data?.message : 0
   }
   return axiosAPI.post('', body, { headers: headers })
     .then((response) => {
@@ -312,4 +286,10 @@ export function uploadVideoApi(file, token) {
     }).catch(error => {
       return handleResponse(error);
     });
+}
+
+export async function getQueryDataApi(query) {
+  let headers = { 'Content-Type': 'application/json' }
+  let data = await axiosAPI.post('api/method/erp_custom_auth.authentication.getSqlQuery', { query }, { headers })
+  return data?.data?.message
 }
