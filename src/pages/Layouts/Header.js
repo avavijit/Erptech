@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Button, DatePicker, Switch, Layout } from 'antd';
 import { useTheme } from "../../theme/use-theme";
 import logo from '../../assets/images/logo.png'
-import { getHomeSettings,getPageDetails } from '../../store/MainRedux'
+import { getHomeSettings, getPageDetails } from '../../store/MainRedux'
 import Config from "../../common/Config";
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -24,7 +24,8 @@ function Header() {
         dispatch(getHomeSettings({ token }))
     }, []);
 
-    // console.log(homeSettings)
+    console.log(homeSettings)
+
     return (
         <header className="header default">
             <div className="topbar">
@@ -41,7 +42,7 @@ function Header() {
                                 <div className="d-inline-block py-1">
                                     <ul className="list-unstyled">
                                         <li><NavLink to="/page/about-us">Careers</NavLink></li>
-                                        <li><NavLink to="/page/contact-us">Careers</NavLink></li>
+                                        <li><NavLink to="/service/SE%3A-006">Services</NavLink></li>
                                         <li><a href="blog.html">News & Media</a></li>
                                         <li><a href="faq.html">FAQ</a></li>
                                     </ul>

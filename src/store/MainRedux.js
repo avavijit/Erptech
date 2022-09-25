@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getAllDataApi, getAllSingleDataApi, postCmdApi, postMethodApi } from '../utility/frappe-apis'
+import { getAllDataApi, getAllSingleDataApi, getSingleDataApi, postMethodApi } from '../utility/frappe-apis'
 
 const initialState = {
     isFetching: false,
@@ -9,6 +9,8 @@ const initialState = {
     ourclint: [],
     degitallife: [],
     service: [],
+    pageDetails: {},
+    serviceDetails: {},
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
@@ -30,17 +32,6 @@ export const getHomeSettings = createAsyncThunk(
             return rejectWithValue(response.data)
         }
         return response
-    }
-)
-
-export const getPageDetails = createAsyncThunk(
-    'auth/getPageDetails',
-    async (params, { rejectWithValue }) => {
-        const response = await getAllDataApi({ doctype: doctypePages, fields: ["*"], search: { route: params.name }, ...params })
-        if (response.status === 'error') {
-            return rejectWithValue(response.data)
-        }
-        return response.data[0]
     }
 )
 
@@ -83,6 +74,28 @@ export const getService = createAsyncThunk(
             return rejectWithValue(response.data)
         }
         return response.data
+    }
+)
+
+export const getPageDetails = createAsyncThunk(
+    'auth/getPageDetails',
+    async (params, { rejectWithValue }) => {
+        const response = await getSingleDataApi({ doctype: doctypePages, fields: ["*"], ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response
+    }
+)
+
+export const getServiceDetails = createAsyncThunk(
+    'auth/getServiceDetails',
+    async (params, { rejectWithValue }) => {
+        const response = await getSingleDataApi({ doctype: "Service", fields: ["*"], ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response
     }
 )
 
@@ -165,6 +178,34 @@ export const counterSlice = createSlice({
             state.isFetching = false
             state.error = null
             state.service = action?.payload
+        },
+        // getPageDetails
+        [getPageDetails.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getPageDetails.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getPageDetails.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.pageDetails = action?.payload
+        },
+        // getServiceDetails
+        [getServiceDetails.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getServiceDetails.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getServiceDetails.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.serviceDetails = action?.payload
         },
 
     }

@@ -5,22 +5,23 @@ import Icon from 'react-web-vector-icons';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
-import { getHomeSettings, getPageDetails } from '../store/MainRedux'
+import { getServiceDetails } from '../store/MainRedux'
 import Config from "../common/Config";
 
 
-function AboutUs() {
+function ServicePage() {
     const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
     const dispatch = useDispatch()
     let { name } = useParams();
-
-
+    const serviceDetails = useSelector((state) => state.main.serviceDetails)
 
     useEffect(() => {
-        dispatch(getPageDetails({ token, name }))
+        dispatch(getServiceDetails({ token, id: name }))
     }, [name]);
+
+    console.log(serviceDetails)
 
     return (
         <>
@@ -356,4 +357,4 @@ function AboutUs() {
     );
 };
 
-export default AboutUs;
+export default ServicePage;
