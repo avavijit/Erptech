@@ -41,10 +41,10 @@ function Header() {
                                 </div>
                                 <div className="d-inline-block py-1">
                                     <ul className="list-unstyled">
-                                        <li><NavLink to="/page/about-us">Careers</NavLink></li>
-                                        <li><NavLink to="/service/SE%3A-006">Services</NavLink></li>
-                                        <li><a href="blog.html">News & Media</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><NavLink to="/page/contact-us">Contact Us</NavLink></li>
+                                        <li><NavLink to="/service/SE%3A-006">Project</NavLink></li>
+                                        {/* <li><a href="blog.html">News & Media</a></li>
+                                        <li><a href="faq.html">FAQ</a></li> */}
                                     </ul>
                                 </div>
                             </div>
@@ -60,9 +60,10 @@ function Header() {
                     </NavLink>
                     <div className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                            <li className="nav-item dropdown active">
-                                <a className="nav-link" href="index.html#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li className="nav-item ">
+                            {/* dropdown active */}
+                                <a className="nav-link" href="index.html" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li className="active"><a className="dropdown-item" href="index.html">Home Default<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="index-02.html">Home London<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="index-03.html">Home New York<i className="fas fa-arrow-right"></i></a></li>
@@ -73,30 +74,17 @@ function Header() {
                                     <li><a className="dropdown-item" href="index-08.html">Home New Delhi<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="index-09.html">Home Berlin<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="index-10.html">Home Paris<i className="fas fa-arrow-right"></i></a></li>
-                                </ul>
+                                </ul> */}
                             </li>
-                            <li className="dropdown nav-item">
-                                <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" data-bs-toggle="dropdown">Pages</a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="contact.html">Contact<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="pricing.html">Pricing<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                                    <li><a className="dropdown-item" href="blog.html">Blog 01<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="blog-02.html">Blog 02<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="blog-detail.html">Blog Detail<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="elements.html">Elements<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="faq.html">Faq<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="coming-soon.html">Coming Soon<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="error-404.html">404 Error<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="privacy-policy.html">Privacy Policy<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="terms-and-conditions.html">Terms & Conditions<i className="fas fa-arrow-right"></i></a></li>
-                                </ul>
-                            </li>
+                            
                             <li className="dropdown nav-item">
                                 <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" data-bs-toggle="dropdown">Company</a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="about-us.html">About Us<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="careers.html">Careers<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="faq.html">Faq<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="privacy-policy.html">Privacy Policy<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="terms-and-conditions.html">Terms & Conditions<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="how-we-work.html">How We Work<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="our-team.html">Our Team<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="mission-vision.html">Mission Vision<i className="fas fa-arrow-right"></i></a></li>
@@ -106,24 +94,16 @@ function Header() {
                                 </ul>
                             </li>
                             <li className="dropdown nav-item">
-                                <a href="industry.html" className="nav-link" data-bs-toggle="dropdown">Industries</a>
+                                <a href="industry.html" className="nav-link" data-bs-toggle="dropdown">Services</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="industry.html">Industries 01<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-02.html">Industries 02<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-03.html">Industries 03<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-04.html">Industries 04<i className="fas fa-arrow-right"></i></a></li>
-                                </ul>
-                            </li>
-                            <li className="dropdown nav-item">
-                                <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" data-bs-toggle="dropdown">Case Studies</a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="case-study.html">Case Studies<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="case-study-single.html">Case Study Single<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="case-study-single-02.html">Case Study Single 02<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry.html">Services 01<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-02.html">Services 02<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-03.html">Services 03<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-04.html">Services 04<i className="fas fa-arrow-right"></i></a></li>
                                 </ul>
                             </li>
                             <li className="dropdown nav-item mega-menu">
-                                <a href="index.html#" className="nav-link" data-bs-toggle="dropdown">Mega Menu</a>
+                                <a href="index.html#" className="nav-link" data-bs-toggle="dropdown">Product</a>
                                 <ul className="dropdown-menu megamenu">
                                     <li>
                                         <div className="row">
@@ -167,6 +147,32 @@ function Header() {
                                     </li>
                                 </ul>
                             </li>
+                            <li className="nav-item">
+                                <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" >Portfolio</a>
+                                {/* <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="case-study.html">Case Studies<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="case-study-single.html">Case Study Single<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="case-study-single-02.html">Case Study Single 02<i className="fas fa-arrow-right"></i></a></li>
+                                </ul> */}
+                            </li>
+                            <li className="nav-item">
+                                <a href="about-us.html" className="nav-link" >Blogs</a>
+                                {/* <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="contact.html">Contact<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="pricing.html">Pricing<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="testimonials.html">Testimonials</a></li>
+                                    <li><a className="dropdown-item" href="blog.html">Blog 01<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="blog-02.html">Blog 02<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="blog-detail.html">Blog Detail<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="elements.html">Elements<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="faq.html">Faq<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="coming-soon.html">Coming Soon<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="error-404.html">404 Error<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="privacy-policy.html">Privacy Policy<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="terms-and-conditions.html">Terms & Conditions<i className="fas fa-arrow-right"></i></a></li>
+                                </ul> */}
+                            </li>
+                            
                         </ul>
                     </div>
                     <div className="d-none d-sm-flex ms-auto me-5 me-lg-0 pe-4 pe-lg-0">

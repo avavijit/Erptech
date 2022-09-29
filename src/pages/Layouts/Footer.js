@@ -38,20 +38,20 @@ function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-                        <h5 className="text-primary mb-2 mb-sm-4">IT Services</h5>
+                        <h5 className="text-primary mb-2 mb-sm-4">Services</h5>
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Data Synchronization</a></li>
-                                <li><a href="index.html#">Content Management</a></li>
-                                <li><a href="index.html#">Content Delivery</a></li>
-                                <li><a href="index.html#">Transaction Processing</a></li>
-                                <li><a href="index.html#">Process Automation</a></li>
+                                <li><a href="index.html#">Digital Marketing</a></li>
+                                <li><a href="index.html#">Web Development</a></li>
+                                <li><a href="index.html#">Software Development</a></li>
+                                <li><a href="index.html#">ERP Development</a></li>
+                                {/* <li><a href="index.html#">Process Automation</a></li> */}
                             </ul>
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Event Processing</a></li>
-                                <li><a href="index.html#">Information Security</a></li>
-                                <li><a href="index.html#">Mobile Platforms</a></li>
-                                <li><a href="index.html#">Communications</a></li>
+                                <li><a href="index.html#">Hospital Management</a></li>
+                                <li><a href="index.html#">Hotel Management</a></li>
+                                <li><a href="index.html#">Taxi App</a></li>
+                                <li><a href="index.html#">Lead Plus</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,10 +60,9 @@ function Footer() {
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
                                 <li><a href="index.html#">About</a></li>
-                                <li><a href="index.html#">Leadership Team</a></li>
-                                <li><a href="index.html#">IT Blog</a></li>
-                                <li><a href="index.html#">Case Studies</a></li>
-                                <li><a href="index.html#">Locations</a></li>
+                                <li><a href="index.html#">portfolio</a></li>
+                                <li><a href="index.html#">Blog</a></li>                       
+                                {/* <li><a href="index.html#">Locations</a></li> */}
                                 <li><a href="index.html#">Careers <span className="badge bg-success ms-2">We're hiring</span></a></li>
                             </ul>
                         </div>
@@ -72,11 +71,9 @@ function Footer() {
                         <h5 className="text-primary mb-2 mb-sm-4">Support</h5>
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Forum Support</a></li>
-                                <li><a href="index.html#">Help & FAQs</a></li>
                                 <li><a href="index.html#">Contact Us</a></li>
-                                <li><a href="index.html#">Pricing And Plans</a></li>
-                                <li><a href="index.html#">Cookies Policy</a></li>
+                                <li><a href="index.html#">FAQs</a></li>
+                                <li><a href="index.html#">Terms & Conditions</a></li>
                                 <li><a href="index.html#">Privacy Policy</a></li>
                             </ul>
                         </div>
