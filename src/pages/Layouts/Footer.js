@@ -72,7 +72,7 @@ function Footer() {
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
                                 <li><a href="index.html#">Contact Us</a></li>
-                                <li><a href="index.html#">FAQs</a></li>
+                                <li><NavLink to="/page/faqs">FAQs</NavLink></li>
                                 <li><a href="index.html#">Terms & Conditions</a></li>
                                 <li><a href="index.html#">Privacy Policy</a></li>
                             </ul>

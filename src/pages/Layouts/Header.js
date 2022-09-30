@@ -43,8 +43,6 @@ function Header() {
                                     <ul className="list-unstyled">
                                         <li><NavLink to="/page/contact-us">Contact Us</NavLink></li>
                                         <li><NavLink to="/service/SE%3A-006">Project</NavLink></li>
-                                        {/* <li><a href="blog.html">News & Media</a></li>
-                                        <li><a href="faq.html">FAQ</a></li> */}
                                     </ul>
                                 </div>
                             </div>
@@ -78,7 +76,7 @@ function Header() {
                             </li>
 
                             <li className="dropdown nav-item">
-                                <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" data-bs-toggle="dropdown">Company</a>
+                                <a href="#" className="nav-link" data-bs-toggle="dropdown">Company</a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="about-us.html">About Us<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="careers.html">Careers<i className="fas fa-arrow-right"></i></a></li>
