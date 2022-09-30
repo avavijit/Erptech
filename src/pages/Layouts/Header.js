@@ -61,7 +61,7 @@ function Header() {
                     <div className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
                             <li className="nav-item ">
-                            {/* dropdown active */}
+                                {/* dropdown active */}
                                 <a className="nav-link" href="index.html" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                                 {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li className="active"><a className="dropdown-item" href="index.html">Home Default<i className="fas fa-arrow-right"></i></a></li>
@@ -76,7 +76,7 @@ function Header() {
                                     <li><a className="dropdown-item" href="index-10.html">Home Paris<i className="fas fa-arrow-right"></i></a></li>
                                 </ul> */}
                             </li>
-                            
+
                             <li className="dropdown nav-item">
                                 <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" data-bs-toggle="dropdown">Company</a>
                                 <ul className="dropdown-menu">
@@ -96,59 +96,30 @@ function Header() {
                             <li className="dropdown nav-item">
                                 <a href="industry.html" className="nav-link" data-bs-toggle="dropdown">Services</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="industry.html">Services 01<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-02.html">Services 02<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-03.html">Services 03<i className="fas fa-arrow-right"></i></a></li>
-                                    <li><a className="dropdown-item" href="industry-04.html">Services 04<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-04.html">ERP Development<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-03.html">Software Development<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-03.html">Mobile Application<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry.html">Digital Marketing<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-02.html">Web Development<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-02.html">Ecommerce Development<i className="fas fa-arrow-right"></i></a></li>
                                 </ul>
                             </li>
-                            <li className="dropdown nav-item mega-menu">
-                                <a href="index.html#" className="nav-link" data-bs-toggle="dropdown">Product</a>
-                                <ul className="dropdown-menu megamenu">
-                                    <li>
-                                        <div className="row">
-                                            <div className="col-sm-6 col-lg-3">
-                                                <h6 className="mb-3 nav-title">Menu Title </h6>
-                                                <ul className="list-unstyled mt-lg-3">
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-3">
-                                                <h6 className="mb-3 nav-title">Menu Title</h6>
-                                                <ul className="list-unstyled mt-lg-3">
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-3">
-                                                <h6 className="mb-3 nav-title">Menu Title</h6>
-                                                <ul className="list-unstyled mt-lg-3">
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-3">
-                                                <h6 className="mb-3 nav-title">Menu Title</h6>
-                                                <ul className="list-unstyled mt-lg-3">
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                    <li><a href="index.html#">Menu item </a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
+
+                            <li className="dropdown nav-item">
+                                <a href="industry.html" className="nav-link" data-bs-toggle="dropdown">Product</a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="industry.html">Hospital Management<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-03.html">Hotel Management<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-03.html">School Management<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry.html">Taxi App<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-02.html">Lead App<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-02.html">Lab App<i className="fas fa-arrow-right"></i></a></li>
+                                    <li><a className="dropdown-item" href="industry-04.html">Laundry App<i className="fas fa-arrow-right"></i></a></li>
                                 </ul>
                             </li>
+
                             <li className="nav-item">
-                                <a href="https://themes.potenzaglobalsolutions.com/html/ERP TECH/properties.html" className="nav-link" >Portfolio</a>
+                                <a href="industry.html" className="nav-link" >Portfolio</a>
                                 {/* <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="case-study.html">Case Studies<i className="fas fa-arrow-right"></i></a></li>
                                     <li><a className="dropdown-item" href="case-study-single.html">Case Study Single<i className="fas fa-arrow-right"></i></a></li>
@@ -172,7 +143,7 @@ function Header() {
                                     <li><a className="dropdown-item" href="terms-and-conditions.html">Terms & Conditions<i className="fas fa-arrow-right"></i></a></li>
                                 </ul> */}
                             </li>
-                            
+
                         </ul>
                     </div>
                     <div className="d-none d-sm-flex ms-auto me-5 me-lg-0 pe-4 pe-lg-0">

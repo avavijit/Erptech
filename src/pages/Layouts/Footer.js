@@ -23,12 +23,12 @@ function Footer() {
                         </div>
                         <div className="col-sm-9 text-sm-end mt-4 mt-sm-0">
                             <ul className="list-unstyled mb-0 social-icon">
-                                <li><a href="index.html#"><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-github"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-dribbble"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-behance"></i></a></li>
+                                <li><a href="https://www.facebook.com/erptechin"><i className="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://twitter.com/erptechin"><i className="fab fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/erptechin/"><i className="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.instagram.com/erptechin/"><i className="fab fa-instagram"></i></a></li>
+                                {/* <li><a href="index.html#"><i className="fab fa-behance"></i></a></li>
+                                <li><a href="index.html#"><i className="fab fa-github"></i></a></li> */}
                             </ul>
                         </div>
                     </div>
