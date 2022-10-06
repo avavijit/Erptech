@@ -25,7 +25,7 @@ function Home() {
         dispatch(getDegitallife({ token }))
         dispatch(getService({ token }))
     }, []);
-    console.log(service)
+    // console.log(service)
     return (
         <>
             <section className="banner">
