@@ -14,7 +14,7 @@ const initialState = {
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
-const fieldsNewsHomePage = ["logo", "email", "phone", "address", "facebook", "twiter"]
+const fieldsNewsHomePage = ["logo", "meta_title", "meta_description", "email", "phone", "address", "full_address", "address_link", "facebook", "twiter", "linkedin", "instagram"]
 
 const doctypePages = 'Web Page'
 const doctypeHomeslider = 'Home slider'

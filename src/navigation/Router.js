@@ -2,44 +2,30 @@ import React from "react";
 import {
   HashRouter,
   Routes,
-  Route,
-  Navigate,
-  Outlet,
-  useLocation,
+  Route
 } from "react-router-dom";
-import { useSelector } from 'react-redux'
 import Layouts from "../pages/Layouts";
 import Home from "../pages/Home";
 import CmsPage from "../pages/CmsPage";
 import ServicePage from "../pages/ServicePage";
-
-const RequireAuth = () => {
-  const token = useSelector((state) => state.auth.token)
-  let location = useLocation();
-  if (!token) {
-    return <Navigate to="/login" state={{ from: location }} />;
-  }
-  return <Outlet />;
-};
+import ProductPage from "../pages/ProductPage";
+import PortfolioPage from "../pages/PortfolioPage";
+import BlogsPage from "../pages/BlogsPage";
+import ContactUs from "../pages/ContactUs";
 
 function Routers() {
   return (
     <HashRouter>
       <Routes>
         <Route element={<Layouts />}>
-
-          {/* Without token */}
           <Route path="/" element={<Home />} />
           <Route path="/page/:name" element={<CmsPage />} />
           <Route path="/service/:name" element={<ServicePage />} />
-
-          <Route element={<RequireAuth />}>
-            {/* With token */}
-            <Route path="/new" element={<Home />} />
-          </Route>
-
+          <Route path="/product/:name" element={<ProductPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Route>
-
       </Routes>
     </HashRouter>
   );

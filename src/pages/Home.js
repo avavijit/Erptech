@@ -7,13 +7,14 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
 import { getSlider, getOurclint, getDegitallife, getService } from '../store/MainRedux'
 import Config from "../common/Config";
-import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
+import { Helmet } from "react-helmet";
 
 function Home() {
     const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
     const dispatch = useDispatch()
+    const homeSettings = useSelector((state) => state.main.homeSetting)
     const homeSlider = useSelector((state) => state.main.homeSlider)
     const ourclint = useSelector((state) => state.main.ourclint)
     const degitallife = useSelector((state) => state.main.degitallife)
@@ -28,6 +29,10 @@ function Home() {
     // console.log(service)
     return (
         <>
+            <Helmet>
+                <title>{homeSettings?.meta_title}</title>
+                <meta name="description" content={homeSettings?.meta_description} />
+            </Helmet>
             <section className="banner">
                 <div className="swiper-container">
                     <div className="swiper-wrapper h-700 h-sm-500">
@@ -451,8 +456,8 @@ function Home() {
                         </div>
                         <div className="col-lg-8">
                             <div className="row">
-                            {service.map((item, key) =><div key={key} className="col-sm-6 mt-4" >
-                                     <div  className="feature-info feature-info-style-01">
+                                {service.map((item, key) => <div key={key} className="col-sm-6 mt-4" >
+                                    <div className="feature-info feature-info-style-01">
                                         <div className="feature-info-icon">
                                             <i className={item.icon}></i>
                                         </div>
