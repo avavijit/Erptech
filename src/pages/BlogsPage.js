@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import Icon from 'react-web-vector-icons';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../theme/use-theme";
+import { Helmet } from "react-helmet";
 import { getServiceDetails } from '../store/MainRedux'
 import Config from "../common/Config";
-import { Helmet } from "react-helmet";
 
 
-function ServicePage() {
+function BlogsPage() {
     const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
@@ -362,4 +361,4 @@ function ServicePage() {
     );
 };
 
-export default ServicePage;
+export default BlogsPage;
