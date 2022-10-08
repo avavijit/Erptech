@@ -9,8 +9,7 @@ import { getServiceDetails } from '../store/MainRedux'
 import Config from "../common/Config";
 import { Helmet } from "react-helmet";
 
-
-function ServicePage() {
+function ContactUs() {
     const token = Config.token
     let navigate = useNavigate();
     const { t } = useTranslation();
@@ -362,4 +361,4 @@ function ServicePage() {
     );
 };
 
-export default ServicePage;
+export default ContactUs;

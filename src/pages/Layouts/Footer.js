@@ -1,34 +1,25 @@
 import React from "react";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { Button, DatePicker, Switch, Layout } from 'antd';
-import { useTheme } from "../../theme/use-theme";
+import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import Config from "../../common/Config";
 import logo from '../../assets/images/logo.png'
 
 function Footer() {
-    const { t, i18n } = useTranslation();
-    let navigate = useNavigate();
-    const [darkMode, setDarkMode] = useTheme();
-    const langChange = () => {
-        let lang = (i18n.language === 'de') ? 'en' : 'de'
-        i18n.changeLanguage(lang)
-    }
+    const homeSettings = useSelector((state) => state.main.homeSetting)
     return (
         <footer className="footer">
             <div className="footer-top">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-sm-3">
-                            <NavLink to="/"><img className="img-fluid" src={logo} alt="logo" /></NavLink>
+                            <NavLink to="/"><img className="img-fluid" src={homeSettings?.logo ? Config.frappe_url + '/' + homeSettings.logo : logo} alt="logo" /></NavLink>
                         </div>
                         <div className="col-sm-9 text-sm-end mt-4 mt-sm-0">
                             <ul className="list-unstyled mb-0 social-icon">
-                                <li><a href="https://www.facebook.com/erptechin"><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://twitter.com/erptechin"><i className="fab fa-twitter"></i></a></li>
-                                <li><a href="https://www.linkedin.com/company/erptechin/"><i className="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="https://www.instagram.com/erptechin/"><i className="fab fa-instagram"></i></a></li>
-                                {/* <li><a href="index.html#"><i className="fab fa-behance"></i></a></li>
-                                <li><a href="index.html#"><i className="fab fa-github"></i></a></li> */}
+                                <li><a href={`https://www.facebook.com/${homeSettings?.facebook}`}><i className="fab fa-facebook-f"></i></a></li>
+                                <li><a href={`https://twitter.com/${homeSettings?.twitter}`}><i className="fab fa-twitter"></i></a></li>
+                                <li><a href={`https://www.linkedin.com/company/${homeSettings?.linkedin}`}><i className="fab fa-linkedin-in"></i></a></li>
+                                <li><a href={`https://www.instagram.com/${homeSettings?.instagram}`}><i className="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -41,17 +32,16 @@ function Footer() {
                         <h5 className="text-primary mb-2 mb-sm-4">Services</h5>
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Digital Marketing</a></li>
-                                <li><a href="index.html#">Web Development</a></li>
-                                <li><a href="index.html#">Software Development</a></li>
-                                <li><a href="index.html#">ERP Development</a></li>
-                                {/* <li><a href="index.html#">Process Automation</a></li> */}
+                                <li><NavLink to="/service/digital-marketing">Digital Marketing</NavLink></li>
+                                <li><NavLink to="/service/web-development">Web Development</NavLink></li>
+                                <li><NavLink to="/service/software-development">Software Development</NavLink></li>
+                                <li><NavLink to="/service/erp-development">ERP Development</NavLink></li>
                             </ul>
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Hospital Management</a></li>
-                                <li><a href="index.html#">Hotel Management</a></li>
-                                <li><a href="index.html#">Taxi App</a></li>
-                                <li><a href="index.html#">Lead Plus</a></li>
+                                <li><NavLink to="/product/hospital-management">Hospital Management</NavLink></li>
+                                <li><NavLink to="/product/school-management">School Management</NavLink></li>
+                                <li><NavLink to="/product/taxi-app">Taxi App</NavLink></li>
+                                <li><NavLink to="/product/lab-app">Lab App</NavLink></li>
                             </ul>
                         </div>
                     </div>
@@ -59,11 +49,10 @@ function Footer() {
                         <h5 className="text-primary mb-2 mb-sm-4">Company</h5>
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">About</a></li>
-                                <li><a href="index.html#">portfolio</a></li>
-                                <li><a href="index.html#">Blog</a></li>                       
-                                {/* <li><a href="index.html#">Locations</a></li> */}
-                                <li><a href="index.html#">Careers <span className="badge bg-success ms-2">We're hiring</span></a></li>
+                                <li><NavLink to="/page/about-us">About</NavLink></li>
+                                <li><NavLink to="/portfolio">Portfolio</NavLink></li>
+                                <li><NavLink to="/page/blogs">Blog</NavLink></li>
+                                <li><NavLink to="/page/careers">Careers <span className="badge bg-success ms-2">We're hiring</span></NavLink></li>
                             </ul>
                         </div>
                     </div>
@@ -71,10 +60,10 @@ function Footer() {
                         <h5 className="text-primary mb-2 mb-sm-4">Support</h5>
                         <div className="footer-link">
                             <ul className="list-unstyled mb-0">
-                                <li><a href="index.html#">Contact Us</a></li>
+                                <li><NavLink to="/contact-us">Contact Us</NavLink></li>
                                 <li><NavLink to="/page/faqs">FAQs</NavLink></li>
-                                <li><a href="index.html#">Terms & Conditions</a></li>
-                                <li><a href="index.html#">Privacy Policy</a></li>
+                                <li><NavLink to="/page/terms-conditions">Terms & Conditions</NavLink></li>
+                                <li><NavLink to="/page/privacy-policy">Privacy Policy</NavLink></li>
                             </ul>
                         </div>
                     </div>
@@ -84,15 +73,15 @@ function Footer() {
                             <div className="contact-address">
                                 <div className="contact-item">
                                     <label>Address:</label>
-                                    <p>Plot No. 1808, 1st floor, Mancheswar Hitech Square, Behind Koel Care Bhubaneswar, Odisha-751017, India</p>
+                                    <p>{homeSettings?.full_address}</p>
                                 </div>
                                 <div className="contact-item">
                                     <label>Phone:</label>
-                                    <h4 className="mb-0 fw-bold"><a href="index.html#">+91 8637272263</a></h4>
+                                    <h4 className="mb-0 fw-bold"><a href={`whatsapp://tel:${homeSettings?.phone}`}>{homeSettings?.phone}</a></h4>
                                 </div>
                                 <div className="contact-item">
                                     <label>Email:</label>
-                                    <a className="text-dark" href="index.html#">erptechin@gmail.com</a>
+                                    <a className="text-dark" href={`mailto:${homeSettings?.email}`}>{homeSettings?.email}</a>
                                 </div>
                             </div>
                         </div>

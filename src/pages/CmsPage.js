@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/use-theme";
 import { getHomeSettings, getPageDetails } from '../store/MainRedux'
 import Config from "../common/Config";
-
+import { Helmet } from "react-helmet";
 
 function CmsPage() {
     const token = Config.token
@@ -23,6 +23,10 @@ function CmsPage() {
 
     return (
         <>
+            <Helmet>
+                <title>{pageDetails?.meta_title}</title>
+                <meta name="description" content={pageDetails?.meta_title} />
+            </Helmet>
             {pageDetails.banner && (<section className="header-inner header-inner-menu bg-overlay-black-50" style={{ backgroundImage: `url(${Config.frappe_url + '/' + pageDetails.banner})` }}>
                 <div className="container position-relative">
                     <div className="row d-flex justify-content-center position-relative">
