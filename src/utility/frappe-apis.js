@@ -3,14 +3,24 @@
 import Config from "../common/Config";
 import { message } from 'antd';
 import axios from 'axios';
-
-const axiosAPI = axios.create({
-  baseURL: Config.frappe_url,
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'Authorization': Config.token
-  }
-});
+let axiosAPI = null
+if (process.env.REACT_APP_ENV == 'dev') {
+  axiosAPI = axios.create({
+    baseURL: Config.frappe_url,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'Authorization': Config.token
+    }
+  });
+} else {
+  axiosAPI = axios.create({
+    baseURL: Config.frappe_url,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'X-Frappe-CSRF-Token': window.frappe?.csrf_token
+    }
+  });
+}
 
 function handleResponse(error) {
   message.error(error?.response?.statusText);
