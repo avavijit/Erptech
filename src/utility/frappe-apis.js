@@ -3,7 +3,7 @@
 import Config from "../common/Config";
 import { message } from 'antd';
 import axios from 'axios';
-let axiosAPI = axiosAPI = axios.create({
+let axiosAPI = axios.create({
   baseURL: Config.frappe_url,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

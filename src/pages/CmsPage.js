@@ -45,10 +45,10 @@ function CmsPage() {
                                 <ul className="nav">
                                     <li className="nav-item"><NavLink className="nav-link" to="/page/about-us">About Us</NavLink></li>
                                     <li className="nav-item"><NavLink className="nav-link" to="/page/careers">Careers</NavLink></li>
-                                    <li className="nav-item"><NavLink className="nav-link" to="/page/our-team">Our Team</NavLink></li>
-                                    <li className="nav-item"><NavLink className="nav-link" to="/page/careers">Our team</NavLink></li>
-                                    <li className="nav-item"><NavLink className="nav-link" to="/page/careers">Mission and vision</NavLink></li>
-                                    <li className="nav-item"><NavLink className="nav-link" to="/page/careers">Our values</NavLink></li>
+                                    <li className="nav-item"><NavLink className="nav-link" to="/page/how-we-work">How we work</NavLink></li>
+                                    <li className="nav-item"><NavLink className="nav-link" to="/page/our-team">Our team</NavLink></li>
+                                    <li className="nav-item"><NavLink className="nav-link" to="/page/mission-vision">Mission and vision</NavLink></li>
+                                    <li className="nav-item"><NavLink className="nav-link" to="/page/our-value">Our values</NavLink></li>
                                 </ul>
                             </div>
                         </div>
