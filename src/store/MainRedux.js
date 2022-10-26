@@ -11,6 +11,7 @@ const initialState = {
     service: [],
     pageDetails: {},
     serviceDetails: {},
+    productDetails: {},
 }
 
 const doctypeNewsHomePage = 'Home Page Setting'
@@ -21,6 +22,8 @@ const doctypeHomeslider = 'Home slider'
 const doctypeOurclint = 'Our Clients'
 const doctypeDegitallife = 'Digital Life'
 const doctypeService = 'Service'
+
+const doctypeProduct= 'Product'
 
 
 
@@ -92,6 +95,16 @@ export const getServiceDetails = createAsyncThunk(
     'auth/getServiceDetails',
     async (params, { rejectWithValue }) => {
         const response = await getSingleDataApi({ doctype: "Service", fields: ["*"], ...params })
+        if (response.status === 'error') {
+            return rejectWithValue(response.data)
+        }
+        return response
+    }
+)
+export const getProductDetails = createAsyncThunk(
+    'auth/getProductDetails',
+    async (params, { rejectWithValue }) => {
+        const response = await getSingleDataApi({ doctype: doctypeProduct, fields: ["*"], ...params })
         if (response.status === 'error') {
             return rejectWithValue(response.data)
         }
@@ -206,6 +219,20 @@ export const counterSlice = createSlice({
             state.isFetching = false
             state.error = null
             state.serviceDetails = action?.payload
+        },
+        // getProductDetails
+        [getProductDetails.pending]: (state) => {
+            state.isFetching = true
+            state.error = null
+        },
+        [getProductDetails.rejected]: (state, action) => {
+            state.isFetching = false
+            state.error = action?.payload
+        },
+        [getProductDetails.fulfilled]: (state, action) => {
+            state.isFetching = false
+            state.error = null
+            state.productDetails = action?.payload
         },
 
     }
