@@ -4437,7 +4437,12 @@ input.form-control {
   margin-right: 0; }
 
 .navbar-brand img {
-  height: 40px; }
+  width: 150px;
+}
+
+.footer-top .img-fluid {
+  max-width: 150px;
+}
 
 .navbar .navbar-brand {
   color: #ffffff;
